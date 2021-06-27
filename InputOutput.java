@@ -66,14 +66,14 @@ public class InputOutput {
                 if(battler instanceof Warrior) {
                     buffWrite.write(1 + ",");
                 }
-                if(battler instanceof Warrior) {
+                if(battler instanceof Wizard) {
                     buffWrite.write(2 + ",");
                 }
                 buffWrite.write(battler.getId() + "," + battler.getName() + "," + battler.getHp() + "," + battler.getIsAlive() + ",");
                 if(battler instanceof Warrior) {
                     buffWrite.write(battler.getStamina() + "," + battler.getStrength());
                 }
-                if(battler instanceof Warrior) {
+                if(battler instanceof Wizard) {
                     buffWrite.write(battler.getMana() + "," + battler.getIntelligence());
                 }
                 buffWrite.write("/r/n");
