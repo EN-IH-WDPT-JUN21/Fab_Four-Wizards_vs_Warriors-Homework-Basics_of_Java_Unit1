@@ -154,18 +154,16 @@ public class Menu {
 
     public static void playNormalBattle() {
         while(hasPartyFighters()) {
-            // selectFighter();
-            // fight-method
-            // checkFighterHp-method
+            // selectFighter(); Anna's method
+            // Fight / attack methods?
         }
         evaluateGame();
     }
 
     public static void playWithOneClick() {
         while(hasPartyFighters()) {
-            // randomFighters();
-            // fight-method
-            // checkFighterHp-method
+            // randomFighters(); Anna's method
+            // Fight / attack methods?
         }
         evaluateGame();
     }
@@ -177,32 +175,7 @@ public class Menu {
         return true;
     }
 
-    //TODO: Not complete!!!
-    /*
-    public static int selectFighter() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Which team member should fight in the next round? Please write the name of the fighter you would like to pick.\n" +
-                            "These are the fighters you can choose: " + myTeam.toString());
-        String fighter = scanner.nextLine();
-
-
-        for(Object fighter : myTeam) {
-            if(fighter.getName().equals(fighter)) {
-                return fighter.getId();
-            }
-        }
-    }
-     */
-
-    //TODO: Not complete!!!
-    public static void randomFighters() {
-        //To be completed
-    }
-
     public static void evaluateGame() {
-        String winnerParty;
-        String loserParty;
-
         if(myTeam.size() == 0) {
             System.out.println("Your team has lost the tournament. \n" +
                             "These are the fighters that survived until the end: " + enemyTeam.toString());
@@ -222,9 +195,6 @@ public class Menu {
             quitGame();
         }
         scanner.close();
-
-
     }
 
-    //TODO: toString method?
 }
