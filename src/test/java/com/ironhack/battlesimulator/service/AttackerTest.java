@@ -7,10 +7,9 @@ import org.junit.jupiter.api.Test;
 
 class AttackerTest {
     @Test
-    public void warriorAttack() throws InterruptedException {
+    public void warriorAttack_checkIfWarriorKilledWizard() throws InterruptedException {
         Wizard wizard = new Wizard("Best Wizard",5,30,50);
         Warrior warrior = new Warrior("Best Warrior", 100,50,10);
-
 
         warrior.attack(wizard);
 
@@ -19,7 +18,7 @@ class AttackerTest {
     }
 
     @Test
-    public void wizardAttack() throws InterruptedException {
+    public void wizardAttack_checkIfWizardKilledWarrior() throws InterruptedException {
         Wizard wizard = new Wizard("Best Wizard",10,30,50);
         Warrior warrior = new Warrior("Best Warrior", 5,50,10);
 
