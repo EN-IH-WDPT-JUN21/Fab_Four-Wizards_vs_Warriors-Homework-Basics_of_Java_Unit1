@@ -34,12 +34,12 @@ public class Wizard extends Character {
     }
 
     public void setMana(int mana) {
-        if(mana >50) {
-            this.mana = 50;
+        if(mana >MAX_MANA) {
+            this.mana = MAX_MANA;
             System.out.println("You cannot set mana over "+MAX_MANA);
-        } else if(mana <10) {
+        } else if(mana <MIN_MANA) {
             System.out.println("You cannot set mana less than "+MIN_MANA);
-            this.mana = 10;
+            this.mana = MIN_MANA;
         } else {
             this.mana = mana;
         }
@@ -50,12 +50,12 @@ public class Wizard extends Character {
     }
 
     public void setIntelligence(int intelligence) {
-        if(intelligence >50) {
-            this.intelligence = 50;
+        if(intelligence >MAX_INTELLIGENCE) {
+            this.intelligence = MAX_INTELLIGENCE;
             System.out.println("You cannot set intelligence over " + MAX_INTELLIGENCE);
-        } else if(intelligence <1) {
+        } else if(intelligence <MIN_INTELLIGENCE) {
             System.out.println("You cannot set intelligence less than "+MIN_INTELLIGENCE);
-            this.intelligence = 1;
+            this.intelligence = MIN_INTELLIGENCE;
         } else {
             this.intelligence = intelligence;
         }

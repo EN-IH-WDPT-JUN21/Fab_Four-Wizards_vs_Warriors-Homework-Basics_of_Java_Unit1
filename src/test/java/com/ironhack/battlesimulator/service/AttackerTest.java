@@ -5,8 +5,7 @@ import com.ironhack.battlesimulator.model.Wizard;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class AttackTests {
-
+class AttackerTest {
     @Test
     public void warriorAttack() throws InterruptedException {
         Wizard wizard = new Wizard("Best Wizard",5,30,50);
