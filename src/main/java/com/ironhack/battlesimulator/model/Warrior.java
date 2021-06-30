@@ -36,9 +36,8 @@ public class Warrior extends Character {
     public void setStamina(int stamina) {
         if(stamina >MAX_STAMINA) {
             this.stamina = MAX_STAMINA;
-            System.out.println("You cannot set strength over " +MAX_STAMINA);
+            System.out.println("You cannot set strength over " +MAX_STAMINA+"!");
         } else if(stamina <MIN_STAMINA) {
-            System.out.println("You cannot set strength less than "+MIN_STAMINA);
             this.stamina = MIN_STAMINA;
         } else {
             this.stamina = stamina;
@@ -52,9 +51,8 @@ public class Warrior extends Character {
     public void setStrength(int strength) {
         if(strength >MAX_STRENGTH) {
             this.strength = MAX_STRENGTH;
-            System.out.println("You cannot set strength over "+MAX_STRENGTH);
+            System.out.println("You cannot set strength over "+MAX_STRENGTH+"!");
         } else if(strength <MIN_STRENGTH) {
-            System.out.println("You cannot set strength less than "+MIN_STRENGTH);
             this.strength = MIN_STRENGTH;
         } else {
             this.strength = strength;

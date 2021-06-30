@@ -38,7 +38,6 @@ public class Wizard extends Character {
             this.mana = MAX_MANA;
             System.out.println("You cannot set mana over "+MAX_MANA);
         } else if(mana <MIN_MANA) {
-            System.out.println("You cannot set mana less than "+MIN_MANA);
             this.mana = MIN_MANA;
         } else {
             this.mana = mana;
@@ -54,7 +53,6 @@ public class Wizard extends Character {
             this.intelligence = MAX_INTELLIGENCE;
             System.out.println("You cannot set intelligence over " + MAX_INTELLIGENCE);
         } else if(intelligence <MIN_INTELLIGENCE) {
-            System.out.println("You cannot set intelligence less than "+MIN_INTELLIGENCE);
             this.intelligence = MIN_INTELLIGENCE;
         } else {
             this.intelligence = intelligence;
