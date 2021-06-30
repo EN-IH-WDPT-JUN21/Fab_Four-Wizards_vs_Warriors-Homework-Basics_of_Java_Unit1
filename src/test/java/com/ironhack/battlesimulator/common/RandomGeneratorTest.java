@@ -43,6 +43,7 @@ public class RandomGeneratorTest {
         randomGenerator2.generate();
         randomGenerator2.generate();
 
-        Assertions.assertEquals(randomGenerator1, randomGenerator2);
+        Assertions.assertSame(randomGenerator1,randomGenerator2); // check if objects have the same references
+        Assertions.assertEquals(randomGenerator1, randomGenerator2); // check if objects are the same
     }
 }
