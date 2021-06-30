@@ -1,54 +1,44 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Fight {
-    private static List<Object> myTeam = new ArrayList<>();
-    private static List<Object> enemyTeam = new ArrayList<>();
     private static List<Object> graveyard = new ArrayList<>();
 
-    //TODO: move methods to correct classes, remove type casting
-
-    public static void main(String[] args) {
-        //For testing purposes only
-        Warrior w = new Warrior("mivk", "W", 100, true, 25, 10);
-        Wizard ww = new Wizard("ccc", "Saruman", 120, true, 122, 23);
-        fightToDeath(w, ww);
-        myTeam = createRandomParty(4);
-        System.out.println(new Fight().toString());
+    public static List<Object> getGraveyard() {
+        return graveyard;
     }
 
-    //TODO: fight logic depends on the implementation of attack function
-
-    public static void causeDamage(Object fighter, int damage) {
-        ((Character) fighter).setHp(checkHp(fighter) - damage);
+    public static void setGraveyard(List<Object> graveyard) {
+        Fight.graveyard = graveyard;
     }
 
-    public static void fullAttack(Object fighter) {
-        if(fighter instanceof Warrior) {
-            ((Warrior) fighter).attack();
-            causeDamage(fighter, ((Warrior) fighter).getStrength());
-        } else {
-            ((Wizard) fighter).attack();
-            causeDamage(fighter, ((Wizard) fighter).getIntelligence());
+    public void fightToDeath(Character champion, Character enemy) throws InterruptedException  {
+        while(true) {
+
+            if ((champion instanceof Warrior)) {
+                ((Warrior) champion).attack(enemy);
+            } else {
+                ((Wizard) champion).attack(enemy);
+            }
+            System.out.println("champion hp after champion hit: "  + champion.getHp());
+            System.out.println( "enemy hp after champion hit: " + enemy.getHp());
+            if(checkHp(champion) == 0 || checkHp(enemy) == 0) break;
+            if(enemy instanceof Warrior) {
+                ((Warrior) enemy).attack(champion);
+            }else {
+                ((Wizard) enemy).attack(champion);
+            }
+            System.out.println("champion hp after enemy hit: "  +  champion.getHp());
+            System.out.println( "enemy hp after enemy hit: "  + enemy.getHp());
+            if(checkHp(champion) == 0 || checkHp(enemy) == 0) break;
         }
+        System.out.println("\nEnd of round!");
     }
 
-    public static void exchangeBlows(Object champion, Object opponent) {
-        fullAttack(champion);
-        fullAttack(opponent);
-    }
-
-    public static void fightToDeath(Object champion, Object opponent) {
-        while(checkHp(champion) > 0 && checkHp(opponent) > 0) {
-            exchangeBlows(champion, opponent);
-        }
-        System.out.println("End of fight!");
-    }
-
-    public static void checkFighterHp(Object fighter, List<Object> party) {
+    public void checkFighterHp(Object fighter, List<Object> party) {
         if(checkHp(fighter) == 0) {
-            ((Character) fighter).setAlive(false);
             graveyard.add(fighter);
         } else {
             party.add(fighter);
@@ -60,37 +50,30 @@ public class Fight {
         return hp;
     }
 
-    public static List<Object> createRandomParty(int teamSize) {
+    public List<Object> createRandomParty(int teamSize) {
         List<Object> randomParty = new ArrayList<Object>();
         Object randomObject; int typeSet; String randomID; String randomName; int randomHP;
         int randomStamina = 0; int randomStrength = 0; int randomMana = 0; int randomIntelligence = 0;
-        //TODO: use name generator for randomName
-        String[] names = new String[]{"A", "b", "C", "I"};
         for(int i = 0; i < teamSize; i++) {
-            typeSet = getRandomNumber(1, 3);
-//            randomName = getRandomName();
-            randomName = names[getRandomNumber(0, names.length)];
+            typeSet = RandomGenerator.getInstance().randomInt(1, 2);
+            randomName = RandomGenerator.getInstance().generate();
             randomID = getRandomID();
             if(typeSet == 1) {
-                randomHP = getRandomNumber(100, 201);
-                randomStamina = getRandomNumber(10, 51);
-                randomStrength = getRandomNumber(1, 11);
+                randomHP = RandomGenerator.getInstance().randomInt(100, 200);
+                randomStamina = RandomGenerator.getInstance().randomInt(10, 50);
+                randomStrength = RandomGenerator.getInstance().randomInt(1, 10);
                 randomObject = new Warrior(randomID, randomName, randomHP, true, randomStamina, randomStrength);
                 randomParty.add(randomObject);
             }
             if(typeSet == 2) {
-                randomHP = getRandomNumber(50, 101);
-                randomIntelligence = getRandomNumber(1, 51);
-                randomMana = getRandomNumber(10, 51);
+                randomHP = RandomGenerator.getInstance().randomInt(50, 100);
+                randomIntelligence = RandomGenerator.getInstance().randomInt(1, 50);
+                randomMana = RandomGenerator.getInstance().randomInt(10, 50);
                 randomObject = new Wizard(randomID, randomName, randomHP, true, randomMana, randomIntelligence);
                 randomParty.add(randomObject);
             }
         }
         return randomParty;
-    }
-
-    public static int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
     }
 
     public static String getRandomID() {
@@ -102,19 +85,35 @@ public class Fight {
         return id;
     }
 
-    //TODO: discuss game modes
+    public Object selectFighter(List<Object> party) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Which team member should fight in the next round? Please write the name of the fighter you would like to pick.\n" +
+                "These are the fighters you can choose: " + toString(party));
+        String fighter = scanner.nextLine();
+        Object myFighter = null;
+        for (Object f : party) {
+            if (((Character) f).getName().equals(fighter)) {
+                myFighter = f;
+            }
+        }
+        party.remove(myFighter);
+        return myFighter;
+    }
 
-    public static Object randomFighters(List<Object> party) {
+    public Object randomFighters(List<Object> party) {
         Object fighter = party.get(getRandomNumber(0, party.size()));
         party.remove(fighter);
         return fighter;
     }
 
-    @Override
-    public String toString() {
+    public static int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
+    public String toString(List<Object> party) {
         List<String> names = new ArrayList<String>();
         String name;
-        for (Object fighter : myTeam) {
+        for (Object fighter : party) {
             name = ((Character) fighter).getName();
             names.add(name);
         }
