@@ -93,7 +93,7 @@ public class Wizard extends Character {
         character.setHp(character.getHp() - damage);
         System.out.println(character.getName() + " lost " +damage+ " hp!");
         if(!character.isAlive()) {
-            System.out.print(character.getName() + " is dead [*]");
+            System.out.println(character.getName() + " is dead [*]");
         }
     }
 }
