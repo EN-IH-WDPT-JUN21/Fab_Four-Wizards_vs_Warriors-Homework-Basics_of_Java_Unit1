@@ -4,7 +4,6 @@ import com.ironhack.battlesimulator.common.RandomGenerator;
 
 public class Wizard extends Character {
 
-    private static final int MIN_HP = 50;
     private static final int MAX_HP = 100;
 
     private static final int MIN_MANA = 10;
@@ -15,13 +14,6 @@ public class Wizard extends Character {
 
     private int mana;
     private int intelligence;
-
-    // Default constructor for party with full randomized stats
-    public Wizard() {
-        super(RandomGenerator.getInstance().randomInt(MIN_HP,MAX_HP));
-        setMana(RandomGenerator.getInstance().randomInt(MIN_MANA,MAX_MANA));
-        setIntelligence(RandomGenerator.getInstance().randomInt(MIN_INTELLIGENCE, MAX_INTELLIGENCE));
-    }
 
     // Constructor for party imported from CSV
     public Wizard(String id,String name, int hp, boolean isAlive, int mana, int intelligence) {
@@ -76,7 +68,6 @@ public class Wizard extends Character {
             super.setAlive(false);
         } else if(hp>MAX_HP) {
             super.setHp(MAX_HP);
-            System.out.println("You can't set hp over "+MAX_HP+"!");
         } else {
             super.setHp(hp);
         }

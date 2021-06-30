@@ -7,7 +7,6 @@ public class Warrior extends Character {
     private int stamina;
     private int strength;
 
-    private static final int MIN_HP = 100;
     private static final int MAX_HP = 200;
 
     private static final int MIN_STAMINA = 10;
@@ -15,13 +14,6 @@ public class Warrior extends Character {
 
     private static final int MIN_STRENGTH = 1;
     private static final int MAX_STRENGTH = 10;
-
-    // Default constructor for party with full randomized stats
-    public Warrior() {
-        super(RandomGenerator.getInstance().randomInt(MIN_HP,MAX_HP));
-        setStamina(RandomGenerator.getInstance().randomInt(MIN_STAMINA,MAX_STAMINA));
-        setStrength(RandomGenerator.getInstance().randomInt(MIN_STRENGTH,MAX_STRENGTH));
-    }
 
     // Constructor for party imported from CSV
     public Warrior(String id, String name, int hp, boolean isAlive, int stamina, int strength) {
@@ -76,7 +68,6 @@ public class Warrior extends Character {
             super.setAlive(false);
         } else if(hp>MAX_HP) {
             super.setHp(MAX_HP);
-            System.out.println("You can't set hp over "+MAX_HP+"!");
         } else {
             super.setHp(hp);
         }
