@@ -1,3 +1,5 @@
+package com.ironhack.battlesimulator.common;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -22,16 +24,16 @@ public class Fight {
             } else {
                 ((Wizard) champion).attack(enemy);
             }
-            System.out.println("champion hp after champion hit: "  + champion.getHp());
-            System.out.println( "enemy hp after champion hit: " + enemy.getHp());
+            System.out.println("Champion health: "  + champion.getHp());
+            System.out.println( "Enemy health: " + enemy.getHp());
             if(checkHp(champion) == 0 || checkHp(enemy) == 0) break;
             if(enemy instanceof Warrior) {
                 ((Warrior) enemy).attack(champion);
             }else {
                 ((Wizard) enemy).attack(champion);
             }
-            System.out.println("champion hp after enemy hit: "  +  champion.getHp());
-            System.out.println( "enemy hp after enemy hit: "  + enemy.getHp());
+            System.out.println("Champion health: "  +  champion.getHp());
+            System.out.println( "Enemy health: "  + enemy.getHp());
             if(checkHp(champion) == 0 || checkHp(enemy) == 0) break;
         }
         System.out.println("\nEnd of round!");
@@ -121,4 +123,5 @@ public class Fight {
     }
 
 }
+
 
