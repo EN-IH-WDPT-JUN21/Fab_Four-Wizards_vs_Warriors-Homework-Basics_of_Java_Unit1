@@ -1,8 +1,6 @@
 package com.ironhack.battlesimulator.model;
 
-import com.ironhack.battlesimulator.common.RandomGenerator;
-
-public class Wizard extends Character {
+public class Wizard extends GeneralCharacter {
 
     private static final int MAX_HP = 100;
 
@@ -72,7 +70,7 @@ public class Wizard extends Character {
     }
 
     @Override
-    public void attack(Character character) throws InterruptedException {
+    public void attack(GeneralCharacter character) throws InterruptedException {
         String opponent  = character instanceof Warrior ? "Warrior" : "Wizard";
         int damage;
 
