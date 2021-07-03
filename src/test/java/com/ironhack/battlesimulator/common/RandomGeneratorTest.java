@@ -1,5 +1,6 @@
-package com.ironhack.battlesimulator.common;
+package test.java.com.ironhack.battlesimulator.common;
 
+import main.java.com.ironhack.battlesimulator.common.RandomGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.ironhack.battlesimulator.common;
+package main.java.com.ironhack.battlesimulator.common;
 
 import java.util.ArrayList;
 import java.util.Random;

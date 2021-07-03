@@ -1,8 +1,9 @@
-package com.ironhack.battlesimulator.service;
+package main.java.com.ironhack.battlesimulator.service;
 
-import com.ironhack.battlesimulator.model.Character;
+
+import main.java.com.ironhack.battlesimulator.model.GeneralCharacter;
 
 public interface Attacker {
 
-    void attack(Character character) throws InterruptedException;
+    void attack(GeneralCharacter character) throws InterruptedException;
 }
