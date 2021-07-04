@@ -1,6 +1,6 @@
 package com.ironhack.battlesimulator.common;
 
-import com.ironhack.battlesimulator.model.GeneralCharacter;
+import com.ironhack.battlesimulator.model.Character;
 import com.ironhack.battlesimulator.model.Warrior;
 import com.ironhack.battlesimulator.model.Wizard;
 
@@ -103,7 +103,7 @@ public class InputOutput {
                     buffWrite.write(2 + ",");
                 }
                 //changed: type casting to use Chracter class methods and change method name to isAlive() like in Patryk's class
-                buffWrite.write(((GeneralCharacter) battler).getId() + "," + ((GeneralCharacter) battler).getName() + "," + ((GeneralCharacter) battler).getHp() + "," + ((GeneralCharacter) battler).isAlive() + ",");
+                buffWrite.write(((Character) battler).getId() + "," + ((Character) battler).getName() + "," + ((Character) battler).getHp() + "," + ((Character) battler).isAlive() + ",");
                 if(battler instanceof Warrior) {
                     buffWrite.write(((Warrior) battler).getStamina() + "," + ((Warrior) battler).getStrength() + System.lineSeparator());
                 }

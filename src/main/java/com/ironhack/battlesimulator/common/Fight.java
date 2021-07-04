@@ -1,6 +1,8 @@
-package com.ironhack.battlesimulator.model;
+package com.ironhack.battlesimulator.common;
 
-import com.ironhack.battlesimulator.common.RandomGenerator;
+import com.ironhack.battlesimulator.model.Character;
+import com.ironhack.battlesimulator.model.Warrior;
+import com.ironhack.battlesimulator.model.Wizard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ public class Fight {
         Fight.graveyard = graveyard;
     }
 
-    public void fightToDeath(GeneralCharacter champion, GeneralCharacter enemy) throws InterruptedException  {
+    public void fightToDeath(Character champion, Character enemy) throws InterruptedException  {
         while(true) {
 
             if ((champion instanceof Warrior)) {
@@ -50,7 +52,7 @@ public class Fight {
     }
 
     public static int checkHp(Object fighter) {
-        int hp = ((GeneralCharacter) fighter).getHp();
+        int hp = ((Character) fighter).getHp();
         return hp;
     }
 
@@ -96,7 +98,7 @@ public class Fight {
         String fighter = scanner.nextLine();
         Object myFighter = null;
         for (Object f : party) {
-            if (((GeneralCharacter) f).getName().equals(fighter)) {
+            if (((Character) f).getName().equals(fighter)) {
                 myFighter = f;
             }
         }
@@ -118,7 +120,7 @@ public class Fight {
         List<String> names = new ArrayList<String>();
         String name;
         for (Object fighter : party) {
-            name = ((GeneralCharacter) fighter).getName();
+            name = ((Character) fighter).getName();
             names.add(name);
         }
         return names.toString().replace("[", "").replace("]", "");

@@ -1,6 +1,6 @@
 package com.ironhack.battlesimulator.model;
 
-public class Warrior extends GeneralCharacter {
+public class Warrior extends Character {
 
     private int stamina;
     private int strength;
@@ -70,7 +70,7 @@ public class Warrior extends GeneralCharacter {
     }
 
     @Override
-    public void attack(GeneralCharacter character) throws InterruptedException {
+    public void attack(Character character) throws InterruptedException {
         String opponent  = character instanceof Warrior ? "warrior" : "wizard";
         int damage;
 

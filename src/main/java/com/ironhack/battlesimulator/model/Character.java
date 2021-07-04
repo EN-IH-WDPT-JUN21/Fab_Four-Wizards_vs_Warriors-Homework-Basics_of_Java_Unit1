@@ -5,35 +5,35 @@ import com.ironhack.battlesimulator.service.Attacker;
 
 import java.util.UUID;
 
-public abstract class GeneralCharacter implements Attacker {
+public abstract class Character implements Attacker {
 
     private String id;
     private String name;
     private int hp;
     private boolean isAlive;
 
-    public GeneralCharacter(int hp) {
+    public Character(int hp) {
         setId(UUID.randomUUID().toString());
         setName(RandomGenerator.getInstance().generate());
         setHp(hp);
         setAlive(true);
     }
 
-    public GeneralCharacter(String name, int hp, boolean isAlive) {
+    public Character(String name, int hp, boolean isAlive) {
         setId(UUID.randomUUID().toString());
         setName(name);
         setHp(hp);
         setAlive(isAlive);
     }
 
-    public GeneralCharacter(String id, String name, int hp, boolean isAlive) {
+    public Character(String id, String name, int hp, boolean isAlive) {
         setId(id);
         setName(name);
         setHp(hp);
         setAlive(isAlive);
     }
 
-    public GeneralCharacter(String name, int hp) {
+    public Character(String name, int hp) {
         setId(UUID.randomUUID().toString());
         setName(name);
         setHp(hp);
