@@ -21,7 +21,7 @@ public class Fight {
                 if ((champion instanceof Warrior)) {
                     champion.attack(enemy);
                 } else {
-                    champion.attack(enemy);
+                    ((Wizard) champion).attack(enemy);
                 }
                 System.out.println("Champion health: " + champion.getHp());
                 System.out.println("Enemy health: " + enemy.getHp());
@@ -29,7 +29,7 @@ public class Fight {
                 if (enemy instanceof Warrior) {
                     enemy.attack(champion);
                 } else {
-                    enemy.attack(champion);
+                    ((Wizard) enemy).attack(champion);
                 }
                 System.out.println("Champion health: " + champion.getHp());
                 System.out.println("Enemy health: " + enemy.getHp());
