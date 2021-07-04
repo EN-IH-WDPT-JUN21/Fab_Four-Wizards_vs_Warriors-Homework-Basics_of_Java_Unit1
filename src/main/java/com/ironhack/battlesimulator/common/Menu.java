@@ -119,7 +119,6 @@ public class Menu {
         int teamsize = getTeamsize(myTeam);
         enemyTeam = tempFight.createRandomParty(teamsize);
         System.out.println("The teams are set and ready to fight! Each team has " + teamsize + " team member(s).");
-        aScanner.close();
     }
 
     public static void askExport(List<Object> myList) throws InterruptedException {

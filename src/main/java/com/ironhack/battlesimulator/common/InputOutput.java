@@ -4,14 +4,13 @@ import main.java.com.ironhack.battlesimulator.model.Warrior;
 import main.java.com.ironhack.battlesimulator.model.Wizard;
 import main.java.com.ironhack.battlesimulator.service.Attacker;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static main.java.com.ironhack.battlesimulator.common.Menu.createTeamOption3;
 
 
 public class InputOutput {
@@ -20,7 +19,7 @@ public class InputOutput {
 
     public List<Object> readFile(String aFile) {
         List<Object> tempList = new ArrayList<>();
-        String typeSetter; Object tempObject;
+        String row; String typeSetter; Object tempObject;
         // Temporary holders of common constructor values
         String anID; String aName; int hp; boolean isAlive;
         // Temporary holders of Warrior stats
@@ -28,12 +27,14 @@ public class InputOutput {
         // Temporary holders of Wizard stats
         int mana; int intelligence;
         BufferedReader csvReader = null;
-        String row;
         try {
             csvReader = new BufferedReader(new FileReader(aFile));
-            if (aFile == null) {
-                throw new NullPointerException("No input provided");
-            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("This is not a valid option. Try again.");
+            createTeamOption3();
+        }
+        try {
             while ((row = csvReader.readLine()) != null) {
                 String[] data = row.split(",");
                 typeSetter = data[0];
@@ -58,17 +59,10 @@ public class InputOutput {
                     tempList.add(tempObject);
                 }
             }
+            csvReader.close();
         }
         catch (Exception e) {
             System.out.println("Error: " + e);
-        }
-        finally {
-            try {
-                csvReader.close();
-            }
-            catch (Exception e) {
-                System.out.println("Error: " + e);
-            }
         }
         return tempList;
     }
@@ -78,12 +72,10 @@ public class InputOutput {
         Scanner aScanner = new Scanner(System.in);
         System.out.println("What is your party's name?");
         String partyName = aScanner.next();
-        aScanner.close();
         String fileName = partyName + "_" + date + ".csv";
         try {
             csvWriter = new BufferedWriter(new FileWriter(fileName));
             csvWriter.append("TypeSetter,ID,Name,HP,isAlive,Stat1,Stat2\n");
-
             for (Object attacker : aList) {
                 if (attacker instanceof Warrior) {
                     csvWriter.append("1,");
@@ -102,7 +94,6 @@ public class InputOutput {
         catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        finally {
             try {
                 csvWriter.flush();
                 csvWriter.close();
@@ -111,30 +102,29 @@ public class InputOutput {
             catch (Exception e) {
                 System.out.println("Error: " + e);
             }
-        }
     }
 
     public List<Object> createParty() {
         List<Object> tempList = new ArrayList<>();
-        int typeSet = 0; String tempID = ""; //changed: initialized tempID to use it in while loop
+        int typeSet = 0; String tempID = "";
         String tempName; int tempHP;
         int tempStamina = 0; int tempStrength = 0; int tempMana = 0; int tempIntelligence = 0;
         boolean done = false; Attacker tempObject; String choice;
         Scanner aScanner = new Scanner(System.in);
-        while(!done) {//changed: the loop wasn't running due to boolean expression evaluating to false
-            System.out.println("Will your fighter be a warrior or a wizard? Type 'f' for warrior or 'm' for wizard.");
-            choice = aScanner.next(); //changed: stored user input in variable because calling next() two times caused program to hang
-            if (choice.equals("f")) { //changed: equals(0 instead of == to compare data
+        while(!done) {
+            System.out.println("Will your fighter be a warrior or a wizard? Type '1' for warrior or '2' for wizard.");
+            choice = aScanner.next();
+            if (choice.equals("1")) {
                 typeSet = 1;
-            } else if (choice.equals("m")){ //changed: equals(0 instead of == to compare data
+            } else if (choice.equals("2")){
                 typeSet = 2;
             }
             else {
-                System.out.println("Hmm, I don't know that type. Please try again.");
+                System.out.println("This is not a valid option. Try again.");
                 continue;
             }
-            while(tempID.length() < 6) { //changed: added a while loop to get the correct ID length
-                System.out.println("Enter an ID for your character (6 letters or numbers).");
+            while(tempID.length() < 6) {
+                System.out.println("Enter an identification number for your fighter (6 letters or numbers).");
                 tempID = aScanner.next();
             }
             System.out.println("What is their name?");
@@ -146,7 +136,6 @@ public class InputOutput {
                 tempStamina = aScanner.nextInt();
                 System.out.println("What is their Strength? It should be between 1 and 10");
                 tempStrength = aScanner.nextInt();
-                //changed: added isAlive = true to satisfy the CSV constructor
                 tempObject = new Warrior(tempID,tempName,tempHP, true, tempStamina,tempStrength);
                 tempList.add(tempObject);
                 tempID = "";
@@ -157,13 +146,12 @@ public class InputOutput {
                 tempMana = aScanner.nextInt();
                 System.out.println("What is their Intelligence? It should be between 1 and 50");
                 tempIntelligence = aScanner.nextInt();
-                //changed: added isAlive = true to satisfy the CSV constructor
                 tempObject = new Wizard(tempID,tempName,tempHP, true, tempMana,tempIntelligence);
                 tempList.add(tempObject);
                 tempID = "";
             }
-            System.out.println("Done! Would you like to create another character? y/n");
-            if (aScanner.next().equals("n")) {
+            System.out.println("Done! Would you like to create another character? Press 1 for YES and 2 for NO");
+            if (aScanner.next().equals("2")) {
                 done = true;
             }
         }
