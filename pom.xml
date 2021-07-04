@@ -12,8 +12,6 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
-<<<<<<< HEAD
-=======
 
     <build>
         <plugins>
@@ -41,6 +39,5 @@
             <version>5.7.2</version>
         </dependency>
     </dependencies>
->>>>>>> b31ff9304e1dd105b3bc64861371ff520b4b8bc9
     
 </project>

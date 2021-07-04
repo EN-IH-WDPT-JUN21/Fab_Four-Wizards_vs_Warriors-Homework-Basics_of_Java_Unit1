@@ -1,9 +1,13 @@
 package com.ironhack.battlesimulator.common;
 
+import com.ironhack.battlesimulator.model.Character;
+import com.ironhack.battlesimulator.model.Warrior;
+import com.ironhack.battlesimulator.model.Wizard;
+import com.ironhack.battlesimulator.service.Attacker;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 
 public class Fight {
     private static List<Object> graveyard = new ArrayList<>();
