@@ -3,7 +3,6 @@ package com.ironhack.battlesimulator.common;
 import com.ironhack.battlesimulator.model.Character;
 import com.ironhack.battlesimulator.model.Warrior;
 import com.ironhack.battlesimulator.model.Wizard;
-import com.ironhack.battlesimulator.service.Attacker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,29 +15,28 @@ public class Fight {
         return graveyard;
     }
 
-    public static void setGraveyard(List<Object> graveyard) {
-        Fight.graveyard = graveyard;
-    }
-
     public void fightToDeath(Character champion, Character enemy) throws InterruptedException  {
         while(true) {
-
-            if ((champion instanceof Warrior)) {
-                ((Warrior) champion).attack(enemy);
-            } else {
-                ((Wizard) champion).attack(enemy);
+            try {
+                if ((champion instanceof Warrior)) {
+                    champion.attack(enemy);
+                } else {
+                    champion.attack(enemy);
+                }
+                System.out.println("Champion health: " + champion.getHp());
+                System.out.println("Enemy health: " + enemy.getHp());
+                if (checkHp(champion) == 0 || checkHp(enemy) == 0) break;
+                if (enemy instanceof Warrior) {
+                    enemy.attack(champion);
+                } else {
+                    enemy.attack(champion);
+                }
+                System.out.println("Champion health: " + champion.getHp());
+                System.out.println("Enemy health: " + enemy.getHp());
+                if (checkHp(champion) == 0 || checkHp(enemy) == 0) break;
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
             }
-            System.out.println("Champion health: "  + champion.getHp());
-            System.out.println( "Enemy health: " + enemy.getHp());
-            if(checkHp(champion) == 0 || checkHp(enemy) == 0) break;
-            if(enemy instanceof Warrior) {
-                ((Warrior) enemy).attack(champion);
-            }else {
-                ((Wizard) enemy).attack(champion);
-            }
-            System.out.println("Champion health: "  +  champion.getHp());
-            System.out.println( "Enemy health: "  + enemy.getHp());
-            if(checkHp(champion) == 0 || checkHp(enemy) == 0) break;
         }
         System.out.println("\nEnd of round!");
     }

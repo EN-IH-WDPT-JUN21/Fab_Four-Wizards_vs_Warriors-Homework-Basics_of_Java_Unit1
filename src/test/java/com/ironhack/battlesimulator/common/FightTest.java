@@ -1,25 +1,34 @@
 package com.ironhack.battlesimulator.common;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 import com.ironhack.battlesimulator.model.Warrior;
 import com.ironhack.battlesimulator.model.Wizard;
 import com.ironhack.battlesimulator.model.Character;
-import com.ironhack.battlesimulator.service.Attacker;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FightTest {
+    Fight fight = new Fight();
+    Warrior warrior;
+    Wizard wizard;
+    List<Object> graveyard;
+    List<Object> myParty1;
+    List<Object> myParty2;
 
-    static Fight fight;
-    static Warrior warrior;
-    static Wizard wizard;
-    static Character character;
-
-    @BeforeAll
-    public static void setup() {
-        fight = new Fight();
+    @BeforeEach
+    public void setup() {
+        warrior = new Warrior("warrior1", 150, 45, 10);
+        wizard = new Wizard("wizard1", 70, 45, 25);
+        graveyard = Fight.getGraveyard();
+        myParty1 = fight.createRandomParty(5);
+        myParty2 = new ArrayList<>();
+        myParty2.add(warrior);
+        myParty2.add(wizard);
     }
 
     @Test
@@ -31,4 +40,80 @@ public class FightTest {
             assert(dictionary.contains(newId.valueOf(newId.charAt(i))));
         }
     }
+
+    @Test
+    public void checkHpTest() {
+        assertEquals(70, fight.checkHp(wizard));
+    }
+
+    @Test
+    public void createRandomPartyTest() {
+        myParty1 = fight.createRandomParty(5);
+        Object second = myParty1.get(1);
+        assertEquals(5, myParty1.size());
+        for(Object o: myParty1) {
+            assert (o instanceof Wizard || o instanceof Warrior);
+        }
+        if(second instanceof Warrior) {
+            assert(((Warrior) second).getStamina() >= 10 && ((Warrior) second).getStamina() <= 50);
+        } else if(second instanceof Wizard) {
+            assert(((Wizard) second).getIntelligence() >= 1 && ((Wizard) second).getIntelligence() <= 50);
+        }
+    }
+
+    @Test
+    public void checkFighterHpTest() {
+        try {
+            fight.fightToDeath(warrior, wizard);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+        int tempPartySize = myParty2.size();
+        fight.checkFighterHp(warrior, myParty2);
+        fight.checkFighterHp(wizard, myParty2);
+        assertEquals(1, graveyard.size());
+        assertEquals(tempPartySize + 1, myParty2.size());
+    }
+
+    @Test
+    public void checkRandomFighters() {
+        Object randomFighter = fight.randomFighters(myParty1);
+        assertEquals(4, myParty1.size());
+        assert(randomFighter instanceof Wizard || randomFighter instanceof Warrior);
+    }
+
+    @Test
+    public void selectFighterTest() {
+        String name = warrior.getName();
+        Object selectedFighter = null;
+        InputStream stdin = System.in;
+        try {
+            System.setIn(new ByteArrayInputStream(name.getBytes()));
+            selectedFighter = fight.selectFighter(myParty2);
+        } finally {
+            System.setIn(stdin);
+        }
+        assertEquals(1, myParty2.size());
+        assert(selectedFighter instanceof Wizard || selectedFighter instanceof Warrior);
+    }
+
+    @Test
+    public void toStringTest() {
+        String myPartyNames = fight.toString(myParty2);
+        assert(myPartyNames instanceof String);
+        assertEquals(((Character) myParty2.get(0)).getName() + ", " + ((Character) myParty2.get(1)).getName(), myPartyNames);
+    }
+
+    @Test
+    public void fightToDeathTest() {
+        try {
+            fight.fightToDeath(warrior, wizard);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+        assert(warrior.getHp() == 0 || wizard.getHp() == 0);
+        assert(warrior.isAlive() == false || wizard.isAlive() == false);
+    }
+
+
 }

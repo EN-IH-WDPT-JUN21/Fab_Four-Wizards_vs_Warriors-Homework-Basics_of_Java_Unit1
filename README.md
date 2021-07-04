@@ -26,5 +26,5 @@ Two gaming modes are offered
 - the battle is run automatically
 
 ## Screenshots
-![Welcome screen](/screenshots/welcome.jpg?raw=true)
+![Welcome screen](src/main/java/com/ironhack/battlesimulator/common/welcome.jpg?raw=true)
 
