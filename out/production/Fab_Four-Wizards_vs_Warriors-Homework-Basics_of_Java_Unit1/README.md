@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Wizards vs Warriors
 
 Wizards vs Warriors is an RPG battle simulator written in Java.
@@ -28,3 +29,6 @@ Two gaming modes are offered
 ## Screenshots
 ![Welcome screen](/screenshots/welcome.jpg?raw=true)
 
+=======
+# Fab_Four-Wizards_vs_Warriors-Homework-Basics_of_Java_Unit1
+>>>>>>> b31ff9304e1dd105b3bc64861371ff520b4b8bc9
