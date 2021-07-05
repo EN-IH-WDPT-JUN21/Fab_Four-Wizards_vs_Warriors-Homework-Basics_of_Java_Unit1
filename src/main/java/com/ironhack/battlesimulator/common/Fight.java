@@ -19,21 +19,26 @@ public class Fight {
 
     public void fightToDeath(Character champion, Character enemy) throws InterruptedException  {
         while(true) {
-            try {
-                if ((champion instanceof Warrior)) {
-                    ((Warrior) champion).attack(enemy);
-                } else {
-                    ((Wizard) champion).attack(enemy);
+            if((checkHp(champion) == 0) || checkHp(enemy) == 0) {
+                break;
+            } else {
+                try {
+                    if ((champion instanceof Warrior)) {
+                        ((Warrior) champion).attack(enemy);
+                    } else {
+                        ((Wizard) champion).attack(enemy);
+                    }
+                    if (checkHp(champion) == 0 || checkHp(enemy) == 0) break;
+                    if (enemy instanceof Warrior) {
+                        ((Warrior) enemy).attack(champion);
+                    } else {
+                        ((Wizard) enemy).attack(champion);
+                    }
+                    System.out.println("Champion health: " + champion.getHp());
+                    System.out.println("Enemy health: " + enemy.getHp());
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
                 }
-                if (checkHp(champion) == 0 || checkHp(enemy) == 0) break;
-                if (enemy instanceof Warrior) {
-                    ((Warrior) enemy).attack(champion);
-                } else {
-                    ((Wizard) enemy).attack(champion);
-                }
-                if (checkHp(champion) == 0 || checkHp(enemy) == 0) break;
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
             }
         }
         System.out.println("\nEnd of round!");
