@@ -1,6 +1,6 @@
 package com.ironhack.battlesimulator.service;
 
-import com.ironhack.battlesimulator.model.Character;
+import main.java.com.ironhack.battlesimulator.model.Character;
 
 public interface Attacker {
 

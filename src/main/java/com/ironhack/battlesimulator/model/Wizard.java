@@ -1,4 +1,4 @@
-package com.ironhack.battlesimulator.model;
+package main.java.com.ironhack.battlesimulator.model;
 
 
 public class Wizard extends Character {
