@@ -1,4 +1,4 @@
-package com.ironhack.battlesimulator.model;
+package main.java.com.ironhack.battlesimulator.model;
 
 import main.java.com.ironhack.battlesimulator.common.RandomGenerator;
 import com.ironhack.battlesimulator.service.Attacker;

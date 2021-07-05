@@ -1,7 +1,7 @@
-package com.ironhack.battlesimulator.common;
+package main.java.com.ironhack.battlesimulator.common;
 
-import com.ironhack.battlesimulator.model.Warrior;
-import com.ironhack.battlesimulator.model.Wizard;
+import main.java.com.ironhack.battlesimulator.model.Warrior;
+import main.java.com.ironhack.battlesimulator.model.Wizard;
 import com.ironhack.battlesimulator.service.Attacker;
 
 import java.io.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.ironhack.battlesimulator.common.Menu.createTeamOption3;
+import static main.java.com.ironhack.battlesimulator.common.Menu.createTeamOption3;
 
 
 public class InputOutput {

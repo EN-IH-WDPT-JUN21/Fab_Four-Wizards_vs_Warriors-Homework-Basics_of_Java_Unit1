@@ -1,7 +1,6 @@
-package com.ironhack.battlesimulator.common;
+package main.java.com.ironhack.battlesimulator.common;
 
-import com.ironhack.battlesimulator.model.Character;
-import com.ironhack.battlesimulator.common.InputOutput;
+import main.java.com.ironhack.battlesimulator.model.Character;
 
 import java.util.ArrayList;
 import java.util.List;

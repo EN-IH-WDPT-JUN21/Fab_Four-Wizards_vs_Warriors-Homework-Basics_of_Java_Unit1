@@ -1,9 +1,8 @@
-package com.ironhack.battlesimulator.common;
+package main.java.com.ironhack.battlesimulator.common;
 
-import com.ironhack.battlesimulator.model.Warrior;
-import com.ironhack.battlesimulator.model.Wizard;
-import com.ironhack.battlesimulator.model.Character;
-import main.java.com.ironhack.battlesimulator.common.RandomGenerator;
+import main.java.com.ironhack.battlesimulator.model.Warrior;
+import main.java.com.ironhack.battlesimulator.model.Wizard;
+import main.java.com.ironhack.battlesimulator.model.Character;
 
 import java.util.ArrayList;
 import java.util.List;

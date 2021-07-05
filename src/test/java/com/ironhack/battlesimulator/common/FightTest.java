@@ -1,8 +1,9 @@
-package com.ironhack.battlesimulator.common;
+package test.java.com.ironhack.battlesimulator.common;
 
-import com.ironhack.battlesimulator.model.Character;
-import com.ironhack.battlesimulator.model.Warrior;
-import com.ironhack.battlesimulator.model.Wizard;
+import main.java.com.ironhack.battlesimulator.common.Fight;
+import main.java.com.ironhack.battlesimulator.model.Character;
+import main.java.com.ironhack.battlesimulator.model.Warrior;
+import main.java.com.ironhack.battlesimulator.model.Wizard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
