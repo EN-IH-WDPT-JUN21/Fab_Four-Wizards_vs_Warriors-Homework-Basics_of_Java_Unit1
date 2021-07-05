@@ -1,3 +1,7 @@
+package main.java.com.ironhack.battlesimulator.common;
+
+import main.java.com.ironhack.battlesimulator.model.GeneralCharacter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -54,9 +58,9 @@ public class Menu {
             case "2":
                 createTeamOption2(); // Both teams are created randomly
                 break;
-//            case "3":
-//                createTeamOption3(); // Import your own team, enemy team randomly created
-//                break;
+            case "3":
+                createTeamOption3(); // Import your own team, enemy team randomly created
+                break;
             case "q":
                 quitGame(); // Quit and start a new game from the beginning
                 break;
@@ -104,14 +108,18 @@ public class Menu {
         }
     }
 
-    // Method for option 3: Import your own team, enemy team randomly created
-//    public static void createTeamOption3() {
-//        InputOutput io = new InputOutput();
-//        myTeam = io.readFile(aFile);
-//        int teamsize = getTeamsize(myTeam);
-//        enemyTeam = Fight.createRandomParty(teamsize);
-//        System.out.println("The teams are set and ready to fight! Each team has " + teamsize + " team member(s).");
-//    }
+//     Method for option 3: Import your own team, enemy team randomly created
+    public static void createTeamOption3() {
+        Fight tempFight = new Fight(); // added to allow calling of createRandomParty, might be better to have createRandomParty as static?
+        InputOutput io = new InputOutput();
+        Scanner aScanner = new Scanner(System.in); // Scanner opened to get the user's input
+        System.out.println("Good choice! What was the name of your last team's file?");
+        String aFile = aScanner.next();
+        myTeam = io.readFile(aFile);
+        int teamsize = getTeamsize(myTeam);
+        enemyTeam = tempFight.createRandomParty(teamsize);
+        System.out.println("The teams are set and ready to fight! Each team has " + teamsize + " team member(s).");
+    }
 
     public static void askExport(List<Object> myList) throws InterruptedException {
         InputOutput io = new InputOutput();
@@ -169,8 +177,8 @@ public class Menu {
     public static void playNormalBattle() throws InterruptedException {
         Fight fight = new Fight(); //changed: to use non-static Fight class methods
         while(hasPartyFighters()) {
-            Character champion = (Character) fight.selectFighter(myTeam);
-            Character opponent = (Character) fight.randomFighters(enemyTeam);
+            GeneralCharacter champion = (GeneralCharacter) fight.selectFighter(myTeam);
+            GeneralCharacter opponent = (GeneralCharacter) fight.randomFighters(enemyTeam);
             fight.fightToDeath(champion, opponent);
             fight.checkFighterHp(champion, myTeam);
             fight.checkFighterHp(opponent, enemyTeam);
@@ -182,8 +190,8 @@ public class Menu {
     public static void playWithOneClick() throws InterruptedException {
         Fight fight = new Fight();
         while(hasPartyFighters()) {
-            Character champion = (Character) fight.randomFighters(myTeam);
-            Character opponent = (Character) fight.randomFighters(enemyTeam);
+            GeneralCharacter champion = (GeneralCharacter) fight.randomFighters(myTeam);
+            GeneralCharacter opponent = (GeneralCharacter) fight.randomFighters(enemyTeam);
             fight.fightToDeath(champion, opponent);
             fight.checkFighterHp(champion, myTeam);
             fight.checkFighterHp(opponent, enemyTeam);

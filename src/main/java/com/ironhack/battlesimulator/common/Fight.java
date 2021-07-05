@@ -1,4 +1,8 @@
-package com.ironhack.battlesimulator.common;
+package main.java.com.ironhack.battlesimulator.common;
+
+import main.java.com.ironhack.battlesimulator.model.GeneralCharacter;
+import main.java.com.ironhack.battlesimulator.model.Warrior;
+import main.java.com.ironhack.battlesimulator.model.Wizard;
 
 import com.ironhack.battlesimulator.model.Character;
 import com.ironhack.battlesimulator.model.Warrior;
@@ -9,6 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Fight {
+
     private static List<Object> graveyard = new ArrayList<>();
 
     public static List<Object> getGraveyard() {
@@ -50,7 +55,7 @@ public class Fight {
     }
 
     public static int checkHp(Object fighter) {
-        int hp = ((Character) fighter).getHp();
+        int hp = ((GeneralCharacter) fighter).getHp();
         return hp;
     }
 
@@ -96,7 +101,7 @@ public class Fight {
         String fighter = scanner.nextLine();
         Object myFighter = null;
         for (Object f : party) {
-            if (((Character) f).getName().equals(fighter)) {
+            if (((GeneralCharacter) f).getName().equals(fighter)) {
                 myFighter = f;
             }
         }
@@ -118,7 +123,7 @@ public class Fight {
         List<String> names = new ArrayList<String>();
         String name;
         for (Object fighter : party) {
-            name = ((Character) fighter).getName();
+            name = ((GeneralCharacter) fighter).getName();
             names.add(name);
         }
         return names.toString().replace("[", "").replace("]", "");

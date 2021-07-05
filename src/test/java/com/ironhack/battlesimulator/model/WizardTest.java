@@ -1,5 +1,6 @@
-package com.ironhack.battlesimulator.model;
+package test.java.com.ironhack.battlesimulator.model;
 
+import main.java.com.ironhack.battlesimulator.model.Wizard;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

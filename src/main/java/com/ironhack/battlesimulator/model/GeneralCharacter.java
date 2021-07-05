@@ -1,39 +1,39 @@
-package com.ironhack.battlesimulator.model;
+package main.java.com.ironhack.battlesimulator.model;
 
-import com.ironhack.battlesimulator.common.RandomGenerator;
-import com.ironhack.battlesimulator.service.Attacker;
+import main.java.com.ironhack.battlesimulator.common.RandomGenerator;
+import main.java.com.ironhack.battlesimulator.service.Attacker;
 
 import java.util.UUID;
 
-public abstract class Character implements Attacker {
+public abstract class GeneralCharacter implements Attacker {
 
     private String id;
     private String name;
     private int hp;
     private boolean isAlive;
 
-    public Character(int hp) {
+    public GeneralCharacter(int hp) {
         setId(UUID.randomUUID().toString());
         setName(RandomGenerator.getInstance().generate());
         setHp(hp);
         setAlive(true);
     }
 
-    public Character(String name, int hp, boolean isAlive) {
+    public GeneralCharacter(String name, int hp, boolean isAlive) {
         setId(UUID.randomUUID().toString());
         setName(name);
         setHp(hp);
         setAlive(isAlive);
     }
 
-    public Character(String id, String name, int hp, boolean isAlive) {
+    public GeneralCharacter(String id, String name, int hp, boolean isAlive) {
         setId(id);
         setName(name);
         setHp(hp);
         setAlive(isAlive);
     }
 
-    public Character(String name, int hp) {
+    public GeneralCharacter(String name, int hp) {
         setId(UUID.randomUUID().toString());
         setName(name);
         setHp(hp);

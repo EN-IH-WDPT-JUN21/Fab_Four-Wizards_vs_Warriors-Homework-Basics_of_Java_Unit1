@@ -1,8 +1,6 @@
-package com.ironhack.battlesimulator.model;
+package main.java.com.ironhack.battlesimulator.model;
 
-import com.ironhack.battlesimulator.common.RandomGenerator;
-
-public class Wizard extends Character {
+public class Wizard extends GeneralCharacter {
 
     private static final int MAX_HP = 100;
 
@@ -72,26 +70,26 @@ public class Wizard extends Character {
     }
 
     @Override
-    public void attack(Character character) throws InterruptedException {
-        String opponent  = character instanceof Warrior ? "Warrior" : "Wizard";
+    public void attack(GeneralCharacter generalCharacter) throws InterruptedException {
+        String opponent  = generalCharacter instanceof Warrior ? "Warrior" : "Wizard";
         int damage;
 
         if(this.getMana() >=5) {
-            System.out.println(this.getName() +"(wizard) is attacking "+character.getName()+"("+opponent+") with a Fireball!");
+            System.out.println(this.getName() +"(wizard) is attacking "+ generalCharacter.getName()+"("+opponent+") with a Fireball!");
             Thread.sleep(1000);
             damage = this.intelligence;
             setMana(getMana()-5);
         } else {
-            System.out.println(this.getName() +"(wizard) is attacking "+character.getName()+"("+opponent+") with a Staff hit!");
+            System.out.println(this.getName() +"(wizard) is attacking "+ generalCharacter.getName()+"("+opponent+") with a Staff hit!");
             Thread.sleep(1000);
             setMana(getMana()+1);
             damage=2;
         }
 
-        character.setHp(character.getHp() - damage);
-        System.out.println(character.getName() + " lost " +damage+ " hp!");
-        if(!character.isAlive()) {
-            System.out.println(character.getName() + " is dead [*]");
+        generalCharacter.setHp(generalCharacter.getHp() - damage);
+        System.out.println(generalCharacter.getName() + " lost " +damage+ " hp!");
+        if(!generalCharacter.isAlive()) {
+            System.out.println(generalCharacter.getName() + " is dead [*]");
         }
     }
 }
