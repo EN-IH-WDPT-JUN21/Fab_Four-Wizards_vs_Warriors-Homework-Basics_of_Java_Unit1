@@ -1,6 +1,6 @@
-package main.java.com.ironhack.battlesimulator.model;
+package com.ironhack.battlesimulator.model;
 
-public class Warrior extends GeneralCharacter {
+public class Warrior extends Character {
 
     private int stamina;
     private int strength;
@@ -70,26 +70,26 @@ public class Warrior extends GeneralCharacter {
     }
 
     @Override
-    public void attack(GeneralCharacter generalCharacter) throws InterruptedException {
-        String opponent  = generalCharacter instanceof Warrior ? "warrior" : "wizard";
+    public void attack(Character character) throws InterruptedException {
+        String opponent  = character instanceof Warrior ? "warrior" : "wizard";
         int damage;
 
         if(this.stamina >= 5) {
-            System.out.println(this.getName() +"(warrior) is attacking "+ generalCharacter.getName()+"("+opponent+") with a Heavy Attack!");
+            System.out.println(this.getName() +"(warrior) is attacking "+character.getName()+"("+opponent+") with a Heavy Attack!");
             damage = this.strength;
             Thread.sleep(1000);
             this.stamina -=5;
         } else {
-            System.out.println(this.getName() +"(warrior) is attacking : "+ generalCharacter.getName()+"("+opponent+") with a Weak Attack!");
+            System.out.println(this.getName() +"(warrior) is attacking : "+character.getName()+"("+opponent+") with a Weak Attack!");
             Thread.sleep(1000);
             damage = strength/2;
             this.stamina++;
         }
 
-        generalCharacter.setHp(generalCharacter.getHp() - damage);
-        System.out.println(generalCharacter.getName()+" has lost " +damage+ " hp!");
-        if(!generalCharacter.isAlive()) {
-            System.out.println(generalCharacter.getName() + " is dead [*]");
+        character.setHp(character.getHp() - damage);
+        System.out.println(character.getName()+" has lost " +damage+ " hp!");
+        if(!character.isAlive()) {
+            System.out.println(character.getName() + " is dead [*]");
         }
     }
 }

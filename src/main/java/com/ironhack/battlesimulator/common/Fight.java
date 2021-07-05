@@ -1,12 +1,9 @@
-package main.java.com.ironhack.battlesimulator.common;
+package com.ironhack.battlesimulator.common;
 
-import main.java.com.ironhack.battlesimulator.model.GeneralCharacter;
-import main.java.com.ironhack.battlesimulator.model.Warrior;
-import main.java.com.ironhack.battlesimulator.model.Wizard;
-
-import com.ironhack.battlesimulator.model.Character;
 import com.ironhack.battlesimulator.model.Warrior;
 import com.ironhack.battlesimulator.model.Wizard;
+import com.ironhack.battlesimulator.model.Character;
+import main.java.com.ironhack.battlesimulator.common.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +21,7 @@ public class Fight {
         while(true) {
             try {
                 if ((champion instanceof Warrior)) {
-                    champion.attack(enemy);
+                    ((Warrior) champion).attack(enemy);
                 } else {
                     ((Wizard) champion).attack(enemy);
                 }
@@ -32,12 +29,12 @@ public class Fight {
                 System.out.println("Enemy health: " + enemy.getHp());
                 if (checkHp(champion) == 0 || checkHp(enemy) == 0) break;
                 if (enemy instanceof Warrior) {
-                    enemy.attack(champion);
+                    ((Warrior) enemy).attack(champion);
                 } else {
                     ((Wizard) enemy).attack(champion);
                 }
                 System.out.println("Champion health: " + champion.getHp());
-                System.out.println("Enemy health: " + enemy.getHp());
+                System.out.println("Enemy health: " + champion.getHp());
                 if (checkHp(champion) == 0 || checkHp(enemy) == 0) break;
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
@@ -55,7 +52,7 @@ public class Fight {
     }
 
     public static int checkHp(Object fighter) {
-        int hp = ((GeneralCharacter) fighter).getHp();
+        int hp = ((Character) fighter).getHp();
         return hp;
     }
 
@@ -101,7 +98,7 @@ public class Fight {
         String fighter = scanner.nextLine();
         Object myFighter = null;
         for (Object f : party) {
-            if (((GeneralCharacter) f).getName().equals(fighter)) {
+            if (((Character) f).getName().equals(fighter)) {
                 myFighter = f;
             }
         }
@@ -123,7 +120,7 @@ public class Fight {
         List<String> names = new ArrayList<String>();
         String name;
         for (Object fighter : party) {
-            name = ((GeneralCharacter) fighter).getName();
+            name = ((Character) fighter).getName();
             names.add(name);
         }
         return names.toString().replace("[", "").replace("]", "");

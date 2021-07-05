@@ -1,16 +1,17 @@
 package com.ironhack.battlesimulator.common;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.*;
-
+import com.ironhack.battlesimulator.model.Character;
 import com.ironhack.battlesimulator.model.Warrior;
 import com.ironhack.battlesimulator.model.Wizard;
-import com.ironhack.battlesimulator.model.Character;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FightTest {
     Fight fight = new Fight();

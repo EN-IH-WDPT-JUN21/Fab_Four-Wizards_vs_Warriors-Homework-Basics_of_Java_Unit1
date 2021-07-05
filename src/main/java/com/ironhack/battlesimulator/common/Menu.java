@@ -1,6 +1,7 @@
-package main.java.com.ironhack.battlesimulator.common;
+package com.ironhack.battlesimulator.common;
 
-import main.java.com.ironhack.battlesimulator.model.GeneralCharacter;
+import com.ironhack.battlesimulator.model.Character;
+import com.ironhack.battlesimulator.common.InputOutput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,6 @@ public class Menu {
         Fight fight = new Fight();
         InputOutput io = new InputOutput();
         myTeam = io.createParty();
-        //System.out.println(myTeam); // Remove?
 
         // Option to export your team
         askExport(myTeam);
@@ -177,8 +177,8 @@ public class Menu {
     public static void playNormalBattle() throws InterruptedException {
         Fight fight = new Fight(); //changed: to use non-static Fight class methods
         while(hasPartyFighters()) {
-            GeneralCharacter champion = (GeneralCharacter) fight.selectFighter(myTeam);
-            GeneralCharacter opponent = (GeneralCharacter) fight.randomFighters(enemyTeam);
+            Character champion = (Character) fight.selectFighter(myTeam);
+            Character opponent = (Character) fight.randomFighters(enemyTeam);
             fight.fightToDeath(champion, opponent);
             fight.checkFighterHp(champion, myTeam);
             fight.checkFighterHp(opponent, enemyTeam);
@@ -190,8 +190,8 @@ public class Menu {
     public static void playWithOneClick() throws InterruptedException {
         Fight fight = new Fight();
         while(hasPartyFighters()) {
-            GeneralCharacter champion = (GeneralCharacter) fight.randomFighters(myTeam);
-            GeneralCharacter opponent = (GeneralCharacter) fight.randomFighters(enemyTeam);
+            Character champion = (Character) fight.randomFighters(myTeam);
+            Character opponent = (Character) fight.randomFighters(enemyTeam);
             fight.fightToDeath(champion, opponent);
             fight.checkFighterHp(champion, myTeam);
             fight.checkFighterHp(opponent, enemyTeam);
