@@ -25,16 +25,12 @@ public class Fight {
                 } else {
                     ((Wizard) champion).attack(enemy);
                 }
-                System.out.println("Champion health: " + champion.getHp());
-                System.out.println("Enemy health: " + enemy.getHp());
                 if (checkHp(champion) == 0 || checkHp(enemy) == 0) break;
                 if (enemy instanceof Warrior) {
                     ((Warrior) enemy).attack(champion);
                 } else {
                     ((Wizard) enemy).attack(champion);
                 }
-                System.out.println("Champion health: " + champion.getHp());
-                System.out.println("Enemy health: " + champion.getHp());
                 if (checkHp(champion) == 0 || checkHp(enemy) == 0) break;
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
