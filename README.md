@@ -6,7 +6,7 @@ A tournament is being held where parties of Wizards and Warriors fight for gold 
 
 ## Usage
 
-The game can be run from the main method in Menu.java file.
+The game can be run from the main method in Menu.java file or by using run command in the terminal from the project directory.
 
 ```java
 public static void main(String[] args) throws InterruptedException {
